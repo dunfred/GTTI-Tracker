@@ -8,7 +8,7 @@
       margin: 0;
       padding: 20px;
       width: 300px;
-      height: 200px;
+      height: 300px;
       display: flex;
       flex-direction: column;
       justify-content: center;
@@ -26,7 +26,12 @@
       font-weight: bold;
       color: #333;
     }
-    #start-button, #copy-button {
+    #container-count {
+      margin: 10px 0;
+      font-size: 16px;
+      color: #333;
+    }
+    #start-button, #stop-button, #copy-button {
       margin-top: 10px;
       padding: 10px 20px;
       font-size: 16px;
@@ -37,16 +42,30 @@
       border-radius: 5px;
       transition: background-color 0.3s;
     }
-    #start-button:hover, #copy-button:hover {
+    #stop-button {
+      background-color: #f44336;
+    }
+    #start-button:hover, #stop-button:hover, #copy-button:hover {
       background-color: #45a049;
+    }
+    #stop-button:hover {
+      background-color: #d32f2f;
+    }
+    #status {
+      margin-top: 10px;
+      font-size: 16px;
+      color: #333;
     }
   </style>
 </head>
 <body>
   <h1>ICE Timing Tracker</h1>
   <div id="time-display">Time taken: -- seconds</div>
+  <div id="container-count">Turn: --</div>
   <button id="start-button">Start Tracking</button>
+  <button id="stop-button" style="display:none;">Stop Tracking</button>
   <button id="copy-button">Copy Time</button>
+  <div id="status">Status: Not tracking</div>
   <script src="popup.js"></script>
 </body>
 </html>
