@@ -13,7 +13,7 @@
       startTime = Date.now();
       clearInterval(intervalId);
       intervalId = setInterval(() => {
-        const currentTime = ((Date.now() - startTime) / 1000).toFixed(2);
+        const currentTime = ((Date.now() - startTime) / 1000).toFixed(1);
         chrome.runtime.sendMessage({ action: "updateTime", time: currentTime });
       }, 100);
     };
@@ -77,11 +77,20 @@
         chrome.storage.local.set({ tracking: true });
   
         const inputFieldXPath = '//*[@id="app-root"]/main/side-navigation-v2/bard-sidenav-container/bard-sidenav-content/div/div/div[2]/chat-window/div[1]/div[2]/div[1]/input-area-v2/div/div/div[1]/div/div[1]/rich-textarea';
-        const submitButtonXPath = '//*[@id="app-root"]/main/side-navigation-v2/bard-sidenav-container/bard-sidenav-content/div/div/div[2]/chat-window/div[1]/div[2]/div[1]/input-area-v2/div/div/div[3]/div/div/button';
-  
+        const submitButtonXPaths = [
+            '//*[@id="app-root"]/main/side-navigation-v2/bard-sidenav-container/bard-sidenav-content/div/div/div[2]/chat-window/div[1]/div[2]/div[1]/input-area-v2/div/div/div[4]/div/div/button',
+            '//*[@id="app-root"]/main/side-navigation-v2/bard-sidenav-container/bard-sidenav-content/div/div/div[2]/chat-window/div[1]/div[2]/div[1]/input-area-v2/div/div/div[3]/div/div/button'
+        ];
+
         const inputField = document.evaluate(inputFieldXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-        const submitButton = document.evaluate(submitButtonXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
-  
+        let submitButton = null;
+        for (const xpath of submitButtonXPaths) {
+            submitButton = document.evaluate(xpath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
+            if (submitButton) {
+                break;
+            }
+        }
+
         // console.log("Input field found:", inputField);
         // console.log("Submit button found:", submitButton);
   

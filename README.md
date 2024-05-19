@@ -62,7 +62,7 @@ The `manifest.json` file configures the extension and its permissions:
 {
     "manifest_version": 3,
     "name": "GTTI Timing Tracker",
-    "version": "2.1.0",
+    "version": "2.1.1",
     "description": "Tracks the time taken to trigger ICE.",
     "permissions": [
         "activeTab",
