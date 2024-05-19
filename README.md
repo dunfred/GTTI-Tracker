@@ -1,6 +1,6 @@
 # Gemini Time to Trigger ICE Tracker Extension
 
-This Google Chrome extension tracks the time it takes trigger ICE when a prompt is submitted. It measures the duration from when a user submits a prompt until the text `"Analyzing..."` or any other specified text appears in a response container.
+This Google Chrome extension tracks the time it takes to trigger ICE when a prompt is submitted. It measures the duration from when a user submits a prompt until the text `"Analyzing..."` or any other specified text appears in a response container.
 
 ## Features
 
@@ -86,4 +86,8 @@ The `manifest.json` file configures the extension and its permissions:
         }
     ]
 }
+````
 
+## Author
+
+* **Fred Dunyo** - [GitHub](https://github.com/dunfred)
