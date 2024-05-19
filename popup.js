@@ -14,8 +14,23 @@ document.addEventListener('DOMContentLoaded', function () {
     // Handle the start button click
     document.getElementById('start-button').addEventListener('click', function () {
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-        chrome.tabs.sendMessage(tabs[0].id, { action: "startTracking" });
-        console.log("Start button clicked, message sent to content script"); // Debugging log
+        if (tabs[0].id) {
+          chrome.scripting.executeScript(
+            {
+              target: { tabId: tabs[0].id },
+              files: ['content.js'],
+            },
+            () => {
+              chrome.tabs.sendMessage(tabs[0].id, { action: "startTracking" }, (response) => {
+                if (chrome.runtime.lastError) {
+                  console.error("Error sending message:", chrome.runtime.lastError);
+                } else {
+                  console.log("Message sent:", response);
+                }
+              });
+            }
+          );
+        }
       });
     });
   
