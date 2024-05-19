@@ -33,7 +33,7 @@
         for (let mutation of mutations) {
           if (mutation.type === 'childList' && mutation.addedNodes.length > 0) {
             const lastNode = mutation.addedNodes[mutation.addedNodes.length - 1];
-            console.log("New node added:", lastNode);
+            // console.log("New node added:", lastNode);
             updateResponseContainerCount();  // Update container count whenever a new node is added
             if (lastNode.nodeType === Node.ELEMENT_NODE && lastNode.matches(responseContainerSelector)) {
               const textContent = lastNode.textContent.trim();
@@ -82,8 +82,8 @@
         const inputField = document.evaluate(inputFieldXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
         const submitButton = document.evaluate(submitButtonXPath, document, null, XPathResult.FIRST_ORDERED_NODE_TYPE, null).singleNodeValue;
   
-        console.log("Input field found:", inputField);
-        console.log("Submit button found:", submitButton);
+        // console.log("Input field found:", inputField);
+        // console.log("Submit button found:", submitButton);
   
         if (inputField && submitButton) {
           console.log("Input field and submit button found");
