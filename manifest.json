@@ -1,0 +1,26 @@
+{
+    "manifest_version": 3,
+    "name": "GTTI Timing Tracker",
+    "version": "1.0",
+    "description": "Tracks the time taken to trigger ICE.",
+    "permissions": [
+        "activeTab",
+        "scripting",
+        "storage"
+      ],
+    "background": {
+      "service_worker": "background.js"
+    },
+    "action": {
+        "default_popup": "popup.html",
+        "default_popup_width": 300,
+        "default_popup_height": 200
+      },
+    "content_scripts": [
+      {
+        "matches": ["<all_urls>"],
+        "js": ["content.js"]
+      }
+    ]
+  }
+  
