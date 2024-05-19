@@ -1,18 +1,19 @@
 document.addEventListener('DOMContentLoaded', function () {
     const timeDisplay = document.getElementById('time-display');
   
-    // Get the time taken from storage and display it
     chrome.storage.local.get(['timeTaken'], function (result) {
       if (result.timeTaken) {
         timeDisplay.textContent = `Time taken: ${result.timeTaken} seconds`;
       } else {
         timeDisplay.textContent = 'Time taken: -- seconds';
       }
-      console.log("Initial time taken loaded:", result.timeTaken); // Debugging log
+      console.log("Initial time taken loaded:", result.timeTaken);
     });
   
-    // Handle the start button click
     document.getElementById('start-button').addEventListener('click', function () {
+      chrome.storage.local.set({ timeTaken: '--' });
+      timeDisplay.textContent = 'Time taken: -- seconds';
+  
       chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
         if (tabs[0].id) {
           chrome.scripting.executeScript(
@@ -34,17 +35,24 @@ document.addEventListener('DOMContentLoaded', function () {
       });
     });
   
-    // Handle the copy button click
     document.getElementById('copy-button').addEventListener('click', function () {
       chrome.storage.local.get(['timeTaken'], function (result) {
         const timeTaken = result.timeTaken || '--';
         navigator.clipboard.writeText(timeTaken).then(() => {
           alert('Time copied to clipboard!');
-          console.log("Time copied to clipboard:", timeTaken); // Debugging log
+          console.log("Time copied to clipboard:", timeTaken);
         }, (err) => {
           console.error('Could not copy text:', err);
         });
       });
+    });
+  
+    chrome.runtime.onMessage.addListener(function (message) {
+      if (message.action === "updateTime") {
+        timeDisplay.textContent = `Time taken: ${message.time} seconds`;
+      } else if (message.action === "finalTime") {
+        timeDisplay.textContent = `Final time taken: ${message.time} seconds`;
+      }
     });
   });
   
