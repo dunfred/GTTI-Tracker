@@ -1,4 +1,10 @@
 (function() {
+    // Only execute this script on `gemini.google.com`
+    if (window.location.hostname !== 'gemini.google.com') {
+        alert("Unsupported Host. Please head to https://gemini.google.com to use this extension")
+        return;
+    }
+
     let startTime;
     let intervalId;
     let observer;
