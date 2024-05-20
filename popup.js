@@ -86,7 +86,7 @@ document.addEventListener('DOMContentLoaded', function () {
         chrome.storage.local.get(['timeTaken'], function (result) {
             const timeTaken = result.timeTaken || '--';
             navigator.clipboard.writeText(timeTaken).then(() => {
-                alert(`[${containerCountDisplay.textContent}] Time To Trigger ICE copied to clipboard!`);
+                alert(`Time To Trigger ICE copied to clipboard!`);
                 console.log("Time copied to clipboard:", timeTaken);
             }, (err) => {
                 console.error('Could not copy text:', err);

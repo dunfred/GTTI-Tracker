@@ -18,7 +18,6 @@ This Google Chrome extension tracks the time it takes to trigger ICE when a prom
 3. The extension monitors changes in the response containers on the webpage.
 4. When the specified text (`"Analyzing..."` or any other text) appears in the response container, the timer stops.
 5. The time taken is displayed in the popup and can be copied to the clipboard.
-6. The extension shows the current number of the `Turn`.
 
 ## Installation
 
@@ -40,7 +39,7 @@ This Google Chrome extension tracks the time it takes to trigger ICE when a prom
 ## Usage
 
 1. Click on the extension icon in the Chrome toolbar to open the popup.
-2. Click the "Start Tracking" button.
+2. Click the "Start Tracking" button. ( `Always click this before submitting any prompt you want to track to Gemini`).
 3. Submit a prompt on the target webpage.
 4. The timer will start, and the popup will display the current time taken.
 5. When the specified text appears in a response container, the timer will automatically stop.
